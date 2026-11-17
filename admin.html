@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kelola resep di Resep Saku.">
+    <title>Kelola Resep — Resep Saku</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <main class="app-container admin-container">
+        <header class="admin-topbar">
+            <a href="index.html" class="brand-link">
+                <span class="brand-mark" aria-hidden="true"><i class="fas fa-utensils"></i></span>
+                <span>Resep Saku <small>Panel admin</small></span>
+            </a>
+            <div class="admin-top-actions">
+                <a href="index.html" class="admin-text-link"><i class="fas fa-arrow-left"></i> Lihat situs</a>
+                <button type="button" id="adminLogout" class="btn-secondary hidden"><i class="fas fa-right-from-bracket"></i> Keluar</button>
+            </div>
+        </header>
+
+        <section class="admin-intro">
+            <p class="eyebrow"><i class="fas fa-shield-halved" aria-hidden="true"></i> Area administrator</p>
+            <h1>Kelola resep</h1>
+            <p>Tambah resep baru, perbarui informasi, atau hapus resep yang sudah tidak tersedia.</p>
+        </section>
+
+        <p id="adminStatus" class="admin-status hidden" role="status" aria-live="polite"></p>
+
+        <section id="adminWorkspace" class="admin-layout hidden">
+            <div class="admin-panel recipe-form-panel">
+                <div class="admin-panel-heading">
+                    <div>
+                        <p class="eyebrow">Formulir resep</p>
+                        <h2 id="recipeFormTitle">Tambah resep</h2>
+                    </div>
+                    <button type="button" id="resetRecipeForm" class="btn-secondary">Bersihkan</button>
+                </div>
+
+                <form id="adminRecipeForm">
+                    <input type="hidden" id="adminRecipeId">
+                    <div class="admin-form-grid">
+                        <div class="form-group admin-span-2">
+                            <label for="adminTitle">Nama resep</label>
+                            <input type="text" id="adminTitle" maxlength="150" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="adminTime">Waktu (menit)</label>
+                            <input type="number" id="adminTime" min="0" max="65535" value="15" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="adminCategory">Kategori</label>
+                            <select id="adminCategory" required>
+                                <option value="Sarapan">Sarapan</option>
+                                <option value="Makan" selected>Makan</option>
+                                <option value="Camilan">Camilan/Dessert</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="adminDifficulty">Tingkat kesulitan</label>
+                            <select id="adminDifficulty" required>
+                                <option value="Mudah" selected>Mudah</option>
+                                <option value="Sedang">Sedang</option>
+                                <option value="Sulit">Sulit</option>
+                            </select>
+                        </div>
+                        <div class="form-group admin-span-2">
+                            <label for="adminDescription">Deskripsi</label>
+                            <textarea id="adminDescription" rows="3" maxlength="5000" placeholder="Ceritakan singkat tentang resep ini"></textarea>
+                        </div>
+                        <div class="form-group admin-span-2">
+                            <label for="adminImageUrl">URL gambar</label>
+                            <input type="text" id="adminImageUrl" maxlength="500" placeholder="assets/img/contoh.jpg atau URL gambar">
+                            <small class="field-help">Saat mengubah resep, URL kosong akan mempertahankan gambar saat ini.</small>
+                        </div>
+                        <div class="form-group admin-span-2" id="adminUploadGroup">
+                            <label for="adminImageFile">Atau unggah gambar (opsional, maks. 5 MB)</label>
+                            <input type="file" id="adminImageFile" accept="image/jpeg,image/png,image/webp">
+                        </div>
+                    </div>
+
+                    <div class="admin-list-editor">
+                        <div class="admin-panel-heading compact">
+                            <div><h3>Bahan</h3><p>Isi nama dan takaran setiap bahan.</p></div>
+                            <button type="button" class="btn-secondary add-row-btn" data-add-row="ingredients"><i class="fas fa-plus"></i> Tambah</button>
+                        </div>
+                        <div id="adminIngredients" class="admin-dynamic-list"></div>
+                    </div>
+
+                    <div class="admin-list-editor">
+                        <div class="admin-panel-heading compact">
+                            <div><h3>Cara memasak</h3><p>Urutan langkah mengikuti posisi dari atas ke bawah.</p></div>
+                            <button type="button" class="btn-secondary add-row-btn" data-add-row="instructions"><i class="fas fa-plus"></i> Tambah</button>
+                        </div>
+                        <div id="adminInstructions" class="admin-dynamic-list"></div>
+                    </div>
+
+                    <div class="admin-form-actions">
+                        <button type="submit" id="saveRecipeBtn" class="btn-primary"><i class="fas fa-floppy-disk"></i> Simpan resep</button>
+                        <button type="button" id="cancelEditBtn" class="btn-secondary hidden">Batal mengubah</button>
+                    </div>
+                </form>
+            </div>
+
+            <section class="admin-panel admin-recipe-list">
+                <div class="admin-panel-heading">
+                    <div>
+                        <p class="eyebrow">Data resep</p>
+                        <h2>Resep tersedia</h2>
+                    </div>
+                    <button type="button" id="refreshRecipes" class="icon-action" aria-label="Muat ulang daftar resep"><i class="fas fa-rotate"></i></button>
+                </div>
+                <label class="search-box admin-search">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input type="search" id="adminSearch" placeholder="Cari nama resep..." autocomplete="off" aria-label="Cari resep untuk dikelola">
+                </label>
+                <p id="adminRecipeCount" class="admin-count">Memuat resep...</p>
+                <div id="adminRecipeList" class="admin-recipe-items"></div>
+            </section>
+        </section>
+    </main>
+
+    <template id="ingredientRowTemplate">
+        <div class="admin-field-row admin-ingredient-row">
+            <input type="text" data-field="name" maxlength="150" placeholder="Nama bahan" aria-label="Nama bahan" required>
+            <input type="text" data-field="amount" maxlength="100" placeholder="Takaran" aria-label="Takaran bahan" required>
+            <button type="button" class="icon-action remove-row-btn" aria-label="Hapus bahan"><i class="fas fa-trash"></i></button>
+        </div>
+    </template>
+    <template id="instructionRowTemplate">
+        <div class="admin-field-row admin-instruction-row">
+            <span class="step-number" aria-hidden="true"></span>
+            <textarea data-field="description" rows="2" maxlength="10000" placeholder="Jelaskan langkah memasak" aria-label="Langkah memasak" required></textarea>
+            <button type="button" class="icon-action remove-row-btn" aria-label="Hapus langkah"><i class="fas fa-trash"></i></button>
+        </div>
+    </template>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

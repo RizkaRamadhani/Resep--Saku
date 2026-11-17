@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk — Resep Saku</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Tombol Kembali -->
+        <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i></a>
+
+        <!-- Logo & Judul -->
+        <div class="auth-header">
+            <div class="logo-icon">
+                <i class="fas fa-fire"></i>
+            </div>
+            <h1>Selamat datang!</h1>
+            <p>Masuk untuk menyimpan resep favoritmu</p>
+        </div>
+
+        <!-- Form Login -->
+        <div class="auth-card">
+            <h2>Masuk ke akun</h2>
+            <p class="subtext">Silakan isi data akun kamu</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Masukkan username" autocomplete="username" maxlength="50" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" placeholder="Masukkan password" autocomplete="current-password" required>
+                        <button type="button" id="togglePassword" class="eye-btn" aria-label="Tampilkan password">
+                            <i class="fas fa-eye-slash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary full-width">Masuk</button>
+            </form>
+
+            <p class="auth-link">Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

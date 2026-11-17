@@ -1,0 +1,7 @@
+/config/config.php
+/test/
+/uploads/recipes/*
+!/uploads/recipes/.gitkeep
+*.sql
+!/Backup/database_baru.sql
+!/Backup/migration_existing_database.sql

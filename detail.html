@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Resep — Resep Saku</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="detail-header">
+            <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i></a>
+            <h1>Resep Saku</h1>
+            <button id="shareBtn" class="share-btn"><i class="fas fa-plus"></i></button>
+        </header>
+
+        <main class="detail-content">
+            <a href="index.html" class="back-link">&larr; Kembali ke pencarian</a>
+
+            <img id="recipeImage" src="assets/img/placeholder.svg" alt="Foto Resep" class="recipe-image">
+            
+            <div class="recipe-info">
+                <h2 id="recipeTitle">Nasi Goreng Kampung</h2>
+                <p id="recipeDesc">Praktis, gurih, cocok untuk menu sehari-hari.</p>
+                
+                <div class="recipe-meta">
+                    <span class="tag time"><i class="fas fa-clock"></i> <span id="recipeTime">20 menit</span></span>
+                    <span class="tag ingredients"><span id="recipeIngredientsCount">4 bahan</span></span>
+                    <span class="tag difficulty" id="recipeDifficulty">Mudah</span>
+                </div>
+            </div>
+
+            <div class="recipe-section">
+                <h3>Bahan-bahan</h3>
+                <p class="section-subtitle">4 bahan</p>
+                <ul id="ingredientsList" class="ingredients-list">
+                    <!-- Diisi JavaScript -->
+                </ul>
+            </div>
+
+            <div class="recipe-section">
+                <h3>Cara memasak</h3>
+                <ol id="stepsList" class="steps-list">
+                    <!-- Diisi JavaScript -->
+                </ol>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

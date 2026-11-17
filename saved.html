@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resep Tersimpan — Resep Saku</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i></a>
+            <h1>Resep Tersimpan</h1>
+        </header>
+
+        <p class="page-subtitle">Kumpulan masakan favorit yang kamu simpan.</p>
+
+        <div class="search-box small">
+            <i class="fas fa-search"></i>
+            <input type="text" id="savedSearch" placeholder="Cari resep tersimpan...">
+        </div>
+
+        <!-- Kosong -->
+        <div id="emptySaved" class="state-container">
+            <div class="state-icon heart">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h3>Belum ada resep tersimpan</h3>
+            <p>Yuk, temukan resep yang ingin kamu coba.</p>
+            <a href="index.html" class="btn-primary">Jelajahi Resep</a>
+        </div>
+
+        <!-- Daftar Tersimpan -->
+        <div id="savedRecipes" class="recipes-grid hidden">
+            <!-- Diisi JavaScript -->
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-search"></i>
+                <span>Cari</span>
+            </a>
+            <a href="saved.html" class="nav-item active">
+                <i class="fas fa-heart"></i>
+                <span>Disimpan</span>
+            </a>
+            <a href="login.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Akun</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
